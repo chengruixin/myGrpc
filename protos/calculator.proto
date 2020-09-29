@@ -1,0 +1,26 @@
+syntax = "proto3";
+package calculator;
+
+
+message AddRequest {
+  int32 num1 = 1;
+  int32 num2 = 2;
+}
+
+message AddResponse {
+  int32 result = 1;
+}
+
+message DataRequest {
+  int32 num = 1;
+}
+
+message DataResponse {
+  int32 num = 1;
+}
+service Calculator {
+  rpc Add(AddRequest) returns (AddResponse) {};
+  rpc getData(DataRequest) returns (stream DataResponse){};
+  rpc sendData(stream DataRequest) returns(DataResponse){};
+  // rpc exchangeData(stream DataResponse) returns(stream DataResponse){};
+}
